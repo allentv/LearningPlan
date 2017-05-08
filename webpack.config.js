@@ -1,19 +1,26 @@
 const path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   context: __dirname + "/src",
   entry: {
-    javascript: "./index.js",
-    html: "./index.html"
+    javascript: "./index.js"
   },
   output: {
-    filename: "index.js",
+    filename: "[name].js",
     path: __dirname + "/dist",
+    chunkFilename: '[id].[chunkhash].js'
   },
   resolve: {
     extensions: [".js", ".jsx", ".json"],
     modules: [path.resolve(__dirname, "src/components"), "node_modules"]
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      inject: 'body'
+    })
+  ],
   module: {
     loaders: [
       {
@@ -26,5 +33,5 @@ module.exports = {
         loader: "file-loader?name=[name].[ext]",
       }
     ],
-  },
+  }
 }
