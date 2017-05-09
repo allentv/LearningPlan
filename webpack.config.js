@@ -1,14 +1,22 @@
 const path = require('path');
+var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  context: __dirname + "/src",
+  devtool: 'eval',
+  devServer: {
+    hot: true,
+    contentBase: path.join(__dirname, "dist"),
+    // compress: true,
+    port: 10000
+  },
   entry: {
-    javascript: "./index.js"
+    javascript: "./src/main.js"
   },
   output: {
-    filename: "[name].js",
-    path: __dirname + "/dist",
+    filename: "bundle.js",
+    path: __dirname + "dist",
     chunkFilename: '[id].[chunkhash].js'
   },
   resolve: {
@@ -16,21 +24,31 @@ module.exports = {
     modules: [path.resolve(__dirname, "src/components"), "node_modules"]
   },
   plugins: [
+    new ExtractTextPlugin('styles.css'),
     new HtmlWebpackPlugin({
+      hash: true,
       filename: 'index.html',
-      inject: 'body'
-    })
+      template: __dirname + '/index.html'
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loaders: ["react-hot-loader", "babel-loader"],
+        use: "babel-loader",
       },
       {
         test: /\.html$/,
-        loader: "file-loader?name=[name].[ext]",
+        use: "file-loader?name=[name].[ext]",
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
       }
     ],
   }
