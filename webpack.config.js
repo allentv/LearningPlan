@@ -8,7 +8,7 @@ module.exports = {
   devServer: {
     hot: true,
     contentBase: path.join(__dirname, "dist"),
-    // compress: true,
+    compress: true,
     port: 10000
   },
   entry: {
@@ -26,8 +26,9 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('styles.css'),
     new HtmlWebpackPlugin({
+      inject: true,
       hash: true,
-      filename: 'index.html',
+      filename: './dist/index.html',
       template: __dirname + '/index.html'
     }),
     new webpack.HotModuleReplacementPlugin()
@@ -47,7 +48,7 @@ module.exports = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: "css-loader"
+          use: ["css-loader", "postcss-loader"]
         })
       }
     ],
