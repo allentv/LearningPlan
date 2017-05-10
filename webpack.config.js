@@ -1,8 +1,8 @@
 const path = require("path");
-var webpack = require("webpack");
-var CompressionPlugin = require("compression-webpack-plugin");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
+const CompressionPlugin = require("compression-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   devtool: "eval",
@@ -91,7 +91,6 @@ module.exports = {
             {
               loader: "css-loader",
               options: {
-                // sourceMap: false,
                 modules: true,
                 importLoaders: 1,
                 localIdentName: "[name]__[local]___[hash:base64:5]"
@@ -110,7 +109,6 @@ module.exports = {
             {
               loader: 'css-loader',
               query: {
-                // sourceMap: false,
                 modules: true,
                 importLoaders: 2,
                 localIdentName: "[name]__[local]___[hash:base64:5]"
