@@ -27,9 +27,7 @@ module.exports = {
     new ExtractTextPlugin('styles.css'),
     new HtmlWebpackPlugin({
       inject: true,
-      hash: true,
-      filename: './dist/index.html',
-      template: __dirname + '/index.html'
+      hash: true
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
@@ -45,10 +43,19 @@ module.exports = {
         use: "file-loader?name=[name].[ext]",
       },
       {
-        test: /\.css$/,
+        test: /\.[s]?css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: ["css-loader", "postcss-loader"]
+          use: [
+            {
+              loader: "css-loader",
+              options: {
+                sourceMap: true,
+                modules: true,
+                importLoaders: 1
+              }
+            }
+          ]
         })
       }
     ],
