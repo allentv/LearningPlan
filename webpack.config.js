@@ -16,7 +16,7 @@ module.exports = {
   },
   output: {
     filename: "bundle.js",
-    path: __dirname + "/dist",
+    path: path.resolve(__dirname, './dist'),
     chunkFilename: "[name].[chunkhash].js"
   },
   resolve: {
@@ -32,7 +32,10 @@ module.exports = {
         "NODE_ENV": JSON.stringify("production")
       }
     }),
-    new ExtractTextPlugin("styles.css"),
+    new ExtractTextPlugin({
+      filename: "styles.css",
+      allChunks: true
+    }),
     new HtmlWebpackPlugin({
       inject: true,
       hash: true,
@@ -81,18 +84,39 @@ module.exports = {
         use: "file-loader?name=[name].[ext]",
       },
       {
-        test: /\.[s]?css$/,
+        test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: [
             {
               loader: "css-loader",
               options: {
-                sourceMap: false,
+                // sourceMap: false,
                 modules: true,
-                importLoaders: 1
+                importLoaders: 1,
+                localIdentName: "[name]__[local]___[hash:base64:5]"
               }
-            }
+            },
+            "postcss-loader"
+          ]
+        })
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              query: {
+                // sourceMap: false,
+                modules: true,
+                importLoaders: 2,
+                localIdentName: "[name]__[local]___[hash:base64:5]"
+              }
+            },
+            'sass-loader'
           ]
         })
       }
