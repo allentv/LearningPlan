@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 
-import Year from "year/year";
+import App from "app/app";
+import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 
 
 // Create a DIV element to load the main react element
@@ -9,7 +10,7 @@ var iDiv = document.createElement('div');
 document.getElementsByTagName('body')[0].appendChild(iDiv);
 
 function loadReactApp() {
-  ReactDOM.render(<Year />, iDiv);
+  ReactDOM.render(<App />, iDiv);
 }
 
 // The below is required to track when the DOM is actually loaded

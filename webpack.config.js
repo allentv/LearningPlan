@@ -59,9 +59,14 @@ module.exports = {
     new CompressionPlugin({
       asset: "[path].gz[query]",
       algorithm: "gzip",
-      test: /\.js$/,
+      test: /\.(js|css)$/,
       threshold: 10240,
       minRatio: 0.8
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      jquery: "jquery"
     })
   ],
   module: {
@@ -114,7 +119,14 @@ module.exports = {
                 localIdentName: "[name]__[local]___[hash:base64:5]"
               }
             },
-            'sass-loader'
+            {
+              loader: 'sass-loader',
+              query: {
+                includePaths: [
+                    path.resolve(__dirname, 'node_modules/bootstrap/scss/'),
+                ]
+              }
+            }
           ]
         })
       }
