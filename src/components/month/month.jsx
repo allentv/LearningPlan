@@ -1,25 +1,38 @@
 import React, { Component, PropTypes } from 'react';
+import { Table } from 'react-bootstrap';
 
-import MonthConstants from './constants';
+import MonthBody from 'month/monthBody';
+import MonthHeader from 'month/monthHeader';
+import Week from 'month/week';
+import WeekDay from 'month/weekDay';
+
+import './month.scss';
+
 
 export default class Month extends Component {
-	static propTypes = {
-		days: PropTypes.number.isRequired,
-		startDay: PropTypes.oneOf(MonthConstants.DAYS).isRequired
+	monthDays = {
+		1: 31, 2: 28, 3: 31,  4: 30,  5: 31,  6: 30,
+		7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31
 	};
 
-	static defaultPropTypes = {
-		days: MonthConstants.DEFAULT_DAYS_IN_A_MONTH,
-		startDay: MonthConstants.START_OF_WEEK
+	static propTypes = {
+		month: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).isRequired
+	};
+
+	getMonthDays() {
+		return this.monthDays[this.props.month];
 	}
 
 	render() {
 		return (
-			<div>
-				{
-					// TODO: Figure out how to create a table using DIVs
-				}
-			</div>
+			<Table  responsive 
+					bordered 
+					striped 
+					condensed 
+					styleName='monthContent'>
+				<MonthHeader />
+				<MonthBody daysOfMonth={ this.getMonthDays() } />
+			</Table>
 		);
 	}
 }

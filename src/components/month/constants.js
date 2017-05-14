@@ -1,5 +1,5 @@
-export DAYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+export const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-export START_OF_WEEK = 'sun';
+export const START_OF_WEEK = 'Sun';
 
-export DEFAULT_DAYS_IN_A_MONTH = 31;
+export const DEFAULT_DAYS_IN_A_MONTH = 31;
