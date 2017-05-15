@@ -1,10 +1,17 @@
 import React, { PropTypes } from 'react';
 
+import './month.scss';
+
 const WeekDay = props => {
 	if (props.day === '') {
 		return <td>{ ' ' }</td>;
 	} else {
-		return <td>{ props.day }</td>;
+		let cellStyle = 'monthBody--dayOfWeek';
+		// Random check to change the style. Should be changed later to map with actual data.
+		if (props.day % 6 === 0) {
+			cellStyle = 'monthBody--dayOfWeek__notes';
+		}
+		return <td styleName={ cellStyle }>{ props.day }</td>;
 	}
 };
 

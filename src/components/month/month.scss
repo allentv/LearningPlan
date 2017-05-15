@@ -4,13 +4,28 @@
 
 .monthHeader {
 	align-items: right;
-	color:  gray;
-	text-align:  right;
+	color:  white;
 	font-size: medium;
-	vertical-align: bottom
+	vertical-align: bottom;
+	box-shadow: 2px 2px 3px #888888;
 }
 
 .monthHeader--dayOfWeek {
-	text-align: right;
+	text-align: center;
 	vertical-align: top;
+	border: 1px solid #B6C2D9;
+	background: #4D7EA8;
+}
+
+.monthBody--dayOfWeek {
+	text-align: center;
+	letter-spacing: 0.25em;
+	border: 0.05em solid #B6C2D9;
+	padding: 5px;
+}
+
+.monthBody--dayOfWeek__notes {
+	@extend .monthBody--dayOfWeek;
+	font-weight: 700;
+	color: #E15554;
 }
