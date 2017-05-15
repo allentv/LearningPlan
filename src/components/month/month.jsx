@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Table } from 'react-bootstrap';
 
-import MonthBody from 'month/monthBody';
-import MonthHeader from 'month/monthHeader';
+import MonthBody from 'month/month-body';
+import MonthHeader from 'month/month-header';
 import Week from 'month/week';
-import WeekDay from 'month/weekDay';
+import WeekDay from 'month/week-day';
 
 import './month.scss';
 

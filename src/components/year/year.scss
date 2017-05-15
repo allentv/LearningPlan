@@ -1,0 +1,23 @@
+.yearHeader {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: baseline;
+}
+
+.yearHeader--monthYear {
+	margin: 10px;
+}
+
+.yearHeader--monthYear__month {
+	font-weight: 800;
+	font-size: 2em;
+}
+
+.yearHeader--monthYear_year {
+	font-size: 2em;
+}
+
+.yearHeader--selector {
+	margin: 10px;
+}

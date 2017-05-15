@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import WeekDay from 'month/weekDay';
+import WeekDay from 'month/week-day';
 
 
 const Week = props => {
