@@ -8,7 +8,8 @@ const Week = props => {
 		<tr>
 		{
 			props.weekData.map(day => {
-				return <WeekDay day={ day } />;
+				// First and last day of the week are weekend days and hence grayed out
+				return <WeekDay day={ day } weekEnd={ day % 7 == 0 || day % 7 == 1 } />;
 			})
 		}
 		</tr>

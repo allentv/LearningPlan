@@ -12,7 +12,8 @@
 
 .monthHeader--dayOfWeek {
 	text-align: center;
-	vertical-align: top;
+	vertical-align: center;
+	line-height: 2.5;
 	border: 1px solid #B6C2D9;
 	background: #4D7EA8;
 }
@@ -25,7 +26,12 @@
 }
 
 .monthBody--dayOfWeek__notes {
-	@extend .monthBody--dayOfWeek;
 	font-weight: 700;
-	color: #E15554;
+	color: white;
+	background: #FF7070;
+}
+
+.monthBody--dayOfWeek__weekEnd {
+	color: gray;
+	background: #EDF0F9;
 }
