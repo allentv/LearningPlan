@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from "react-dom";
 
 import App from "app/app";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 // Create a DIV element to load the main react element

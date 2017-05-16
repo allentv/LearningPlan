@@ -1,39 +1,31 @@
-import autobind from 'autobind-decorator';
 import React, { Component, PropTypes } from 'react';
 import { inject, observer } from 'mobx-react';
 
+import MonthYearNavigator from './month-year-navigator';
+import MonthYearSwitcher from './month-year-switcher';
+
 import './year.scss';
 
-
-@inject('store')
-@observer
-export default class YearHeader extends Component {
-	static propTypes = {
-		store: PropTypes.shape({
-			currentMonth: PropTypes.string,
-			currentYear: PropTypes.string
-		})
-	}
-
-	@autobind
-	monthChangeHandler(event) {
-		event.preventDefault();
-	}
-
-	render() {
-		console.log(this.props);
-		
-		const { currentMonth, currentYear } = this.props.store;
-		return (
-			<div styleName='yearHeader'>
-				<div styleName='yearHeader--monthYear'>
-					<span styleName='yearHeader--monthYear__month'>{ currentMonth }</span>
-					<span styleName='yearHeader--monthYear_year'>{ currentYear }</span>
-				</div>
-				<div styleName='yearHeader--selector'>
-					SELECTOR
-				</div>
+const YearHeader = props => {
+	const { currentMonthStr, currentYear } = props.store;
+	return (
+		<div styleName='yearHeader'>
+			<div styleName='yearHeader--monthYear'>
+				<span styleName='yearHeader--monthYear__month'>{ currentMonthStr }</span>
+				&nbsp;
+				<span styleName='yearHeader--monthYear_year'>{ currentYear }</span>
 			</div>
-		);
-	}
-}
+			<MonthYearSwitcher />
+			<MonthYearNavigator />
+		</div>
+	);
+};
+
+YearHeader.propTypes = {
+	store: PropTypes.shape({
+		currentMonth: PropTypes.string,
+		currentYear: PropTypes.string
+	})
+};
+
+export default inject('store')(observer(YearHeader));

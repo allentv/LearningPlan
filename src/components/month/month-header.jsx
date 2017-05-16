@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { WEEKDAYS } from './constants';
+import { WEEKDAYS } from 'app/constants';
 
 import './month.scss';
 
