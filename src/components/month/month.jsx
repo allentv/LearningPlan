@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Table } from 'react-bootstrap';
 
 import MonthBody from 'month/month-body';
 import MonthHeader from 'month/month-header';
@@ -25,14 +24,10 @@ export default class Month extends Component {
 
 	render() {
 		return (
-			<Table  responsive 
-					bordered 
-					striped 
-					condensed 
-					styleName='monthContent'>
+			<table styleName='monthContent'>
 				<MonthHeader />
 				<MonthBody daysOfMonth={ this.getMonthDays() } />
-			</Table>
+			</table>
 		);
 	}
 }
